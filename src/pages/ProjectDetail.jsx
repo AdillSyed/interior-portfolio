@@ -50,8 +50,8 @@ const ProjectDetail = () => {
 
   return (
     <>
-      <section className="h-[100svh] relative flex items-center bg-[#F6F4EF]">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section className="relative min-h-[100svh] bg-[#F6F4EF] py-12 md:flex md:items-center">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
             <a
               href="/#works"
@@ -81,8 +81,9 @@ const ProjectDetail = () => {
               onClick={() => openLightbox(0)}
             />
           </div>
-        </div>
-        <div className="absolute bottom-8 left-0 right-0 flex justify-between px-8 text-sm uppercase tracking-widest text-[#1C1C1C]">
+          <div className="mt-8 flex justify-between px-6
+    text-sm uppercase tracking-widest text-[#1C1C1C]
+    md:absolute md:bottom-8 md:left-0 md:right-0 md:px-8">
           {prevProject ? (
             <a
               href={`/projects/${prevProject.id}`}
@@ -104,6 +105,7 @@ const ProjectDetail = () => {
           ) : (
             <span />
           )}
+        </div>
         </div>
       </section>
 
