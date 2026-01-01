@@ -9,7 +9,7 @@ const styles = [
 
 const StyleSpectrum = () => {
   return (
-    <section className="bg-[#F6F4EF]">
+    <section id="styles" className="bg-[#F6F4EF]">
       <div className="max-w-7xl mx-auto px-6 py-32">
 
         <div className="mb-24">

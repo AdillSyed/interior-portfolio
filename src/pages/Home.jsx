@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import Hero from "../components/Hero";
 import SelectedWorks from "../components/SelectedWorks";
 import StyleSpectrum from "../components/StyleSpectrum";
@@ -7,6 +8,7 @@ import Contact from "../components/Contact";
 const Home = () => {
   return (
     <>
+      <Header />
       <Hero />
       <SelectedWorks />
       <StyleSpectrum />

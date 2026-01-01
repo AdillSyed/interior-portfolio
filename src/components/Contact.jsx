@@ -3,7 +3,7 @@ import { Mail, Instagram, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section className="bg-[#F6F4EF]">
+    <section id="contact" className="bg-[#F6F4EF]">
       <div className="max-w-7xl mx-auto px-6 py-40">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -51,7 +51,7 @@ const Contact = () => {
             </div>
           </div>
           <form
-            action="https://formspree.io/f/abcdwxyz"
+            action="https://formspree.io/f/xgovvrrn"
             method="POST"
             className="space-y-8"
           >

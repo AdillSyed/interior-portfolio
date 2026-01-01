@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const SelectedWorks = () => {
   return (
-    <section className="bg-[#F6F4EF]">
+    <section id="works" className="bg-[#F6F4EF]">
       <div className="max-w-7xl mx-auto px-6 py-32">
 
         <div className="mb-24">
