@@ -15,8 +15,7 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-[#F6F4EF]/70 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-
-          <span className="font-serif text-base tracking-wide text-[#1C1C1C]">
+          <span className="font-signature leading-none text-2xl md:text-3xl tracking-wide text-[#1C1C1C]">
             Namratha Maadhu
           </span>
 
@@ -33,12 +32,25 @@ const Header = () => {
           </nav>
 
           <button
-            onClick={() => setOpen(true)}
-            className="md:hidden flex flex-col gap-1"
-            aria-label="Open menu"
+            onClick={() => setOpen(!open)}
+            className="md:hidden relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5"
+            aria-label="Toggle menu"
           >
-            <span className="w-6 h-px bg-[#1C1C1C]" />
-            <span className="w-6 h-px bg-[#1C1C1C]" />
+            <span
+              className={`block h-px w-6 bg-[#1C1C1C] transition-all duration-300 ${
+                open ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-px w-6 bg-[#1C1C1C] transition-all duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-px w-6 bg-[#1C1C1C] transition-all duration-300 ${
+                open ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
           </button>
         </div>
       </header>
@@ -49,37 +61,26 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#F6F4EF]"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#F6F4EF] flex items-center px-8"
           >
-            <motion.div
-              initial={{ y: 40 }}
-              animate={{ y: 0 }}
-              exit={{ y: 40 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="h-full flex flex-col justify-center px-6"
-            >
-              {/* Close */}
-              <button
-                onClick={() => setOpen(false)}
-                className="absolute top-8 right-6 text-sm uppercase tracking-widest"
-              >
-                Close
-              </button>
-
-              {/* Nav links */}
-              <nav className="space-y-10">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block font-serif text-3xl text-[#1C1C1C]"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            </motion.div>
+            <nav className="space-y-10">
+              {[
+                { label: "Work", href: "#works" },
+                { label: "Styles", href: "#styles" },
+                { label: "Process", href: "#process" },
+                { label: "Contact", href: "#contact" },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="block font-mono text-4xl tracking-tight leading-tight text-[#1C1C1C]"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

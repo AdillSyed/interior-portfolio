@@ -1,7 +1,41 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, MapPin } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  const form = e.target;
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch("https://formspree.io/f/xxxx", {
+      method: "POST",
+      body: data,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      toast.success("Message sent. I’ll get back to you soon.");
+      form.reset();
+    } else {
+      toast.error("Something went wrong. Please try again.");
+    }
+  // eslint-disable-next-line no-unused-vars
+  } catch (error) {
+    toast.error("Network error. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
   return (
     <section id="contact" className="bg-[#F6F4EF]">
       <div className="max-w-7xl mx-auto px-6 py-40 pb-10">
@@ -50,11 +84,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <form
-            action="https://formspree.io/f/xgovvrrn"
-            method="POST"
-            className="space-y-8"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm text-[#6B6B6B] mb-2">Name</label>
               <input
@@ -93,13 +123,13 @@ const Contact = () => {
               value="New Interior Design Enquiry"
             />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="/thank-you" />
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="inline-flex items-center gap-3 text-sm uppercase tracking-widest text-[#1C1C1C] group"
             >
-              Send Message
+              {isSubmitting ? "Sending…" : "Send Message"}
               <span className="block w-6 h-px bg-[#1C1C1C] transition-all group-hover:w-10" />
             </button>
           </form>

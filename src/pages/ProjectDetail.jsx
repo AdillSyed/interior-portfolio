@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "../data/projects";
 
 const ProjectDetail = () => {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const navigate = useNavigate();
   let { id } = useParams();
   id = parseInt(id);
-  const project = projects.find((p) => p.id === id);
 
-  if (!project) return null;
-
+  const currentIndex = projects.findIndex((p) => p.id === id);
+  const prevProject = projects[currentIndex - 1];
+  const nextProject = projects[currentIndex + 1];
   const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
-
   const nextImage = () =>
     setLightboxIndex((prev) => (prev + 1) % project.images.length);
 
@@ -21,10 +21,32 @@ const ProjectDetail = () => {
     setLightboxIndex((prev) =>
       prev === 0 ? project.images.length - 1 : prev - 1
     );
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (lightboxIndex !== null) {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        return;
+      }
 
-  const currentIndex = projects.findIndex((p) => p.id === id);
-  const prevProject = projects[currentIndex - 1];
-  const nextProject = projects[currentIndex + 1];
+      if (e.key === "ArrowRight" && nextProject) {
+        navigate(`/projects/${nextProject.id}`);
+      }
+
+      if (e.key === "ArrowLeft" && prevProject) {
+        navigate(`/projects/${prevProject.id}`);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nextProject, prevProject, lightboxIndex, navigate]);
+
+
+  const project = projects.find((p) => p.id === id);
+
+  if (!project) return null;
 
   return (
     <>

@@ -60,17 +60,14 @@ const Process = () => {
                 />
               </div>
 
-              {/* Number */}
               <p className="text-sm uppercase tracking-widest text-[#6B6B6B]">
                 {`0${index + 1}`}
               </p>
 
-              {/* Title */}
               <h3 className="mt-4 font-serif text-2xl sm:text-3xl text-[#1C1C1C]">
                 {step.title}
               </h3>
 
-              {/* Description */}
               <p className="mt-6 text-[#6B6B6B] max-w-sm">{step.description}</p>
             </motion.div>
           ))}
