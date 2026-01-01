@@ -5,7 +5,6 @@ const Contact = () => {
   return (
     <section className="bg-[#F6F4EF]">
       <div className="max-w-7xl mx-auto px-6 py-40">
-
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +21,6 @@ const Contact = () => {
               Reach out to discuss ideas, spaces, or upcoming projects.
             </p>
 
-            {/* Contact info */}
             <div className="mt-16 space-y-6 text-[#1C1C1C]">
               <div className="flex items-center gap-4">
                 <Mail size={18} />
@@ -37,7 +35,7 @@ const Contact = () => {
               <div className="flex items-center gap-4">
                 <Instagram size={18} />
                 <a
-                 href="https://www.instagram.com/namratha_maadhu?igsh=MXhqcXM5ZzFod3IxbA=="
+                  href="https://www.instagram.com/namratha_maadhu?igsh=MXhqcXM5ZzFod3IxbA=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-70 transition"
@@ -48,23 +46,17 @@ const Contact = () => {
 
               <div className="flex items-start gap-4">
                 <MapPin size={18} className="mt-1" />
-                <p>
-                  Bengaluru, India
-                </p>
+                <p>Bengaluru, India</p>
               </div>
             </div>
           </div>
-
           <form
-            action="mailto:namrathamaadu@gmail.com"
+            action="https://formspree.io/f/abcdwxyz"
             method="POST"
-            encType="text/plain"
             className="space-y-8"
           >
             <div>
-              <label className="block text-sm text-[#6B6B6B] mb-2">
-                Name
-              </label>
+              <label className="block text-sm text-[#6B6B6B] mb-2">Name</label>
               <input
                 type="text"
                 name="name"
@@ -74,9 +66,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <label className="block text-sm text-[#6B6B6B] mb-2">
-                Email
-              </label>
+              <label className="block text-sm text-[#6B6B6B] mb-2">Email</label>
               <input
                 type="email"
                 name="email"
@@ -97,6 +87,14 @@ const Contact = () => {
               />
             </div>
 
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Interior Design Enquiry"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="/thank-you" />
+
             <button
               type="submit"
               className="inline-flex items-center gap-3 text-sm uppercase tracking-widest text-[#1C1C1C] group"
@@ -106,13 +104,11 @@ const Contact = () => {
             </button>
           </form>
         </motion.div>
-
         <div className="mt-40 pt-12 border-t border-[#E2DED6]">
           <p className="text-sm text-[#6B6B6B]">
             © {new Date().getFullYear()} Interior Design Studio
           </p>
         </div>
-
       </div>
     </section>
   );
