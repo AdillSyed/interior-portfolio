@@ -1,5 +1,6 @@
 import { projects } from "../data/projects";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const SelectedWorks = () => {
   return (
@@ -18,6 +19,7 @@ const SelectedWorks = () => {
 
         <div className="space-y-32">
           {projects.map((project, index) => (
+            <Link to={`/projects/${project.id}`} className="block" key={project.id}>
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +33,7 @@ const SelectedWorks = () => {
 
               <div className="w-full md:w-1/2 h-[60vh] overflow-hidden">
                 <motion.img
-                  src={project.image}
+                  src={project.images[0]}
                   alt={project.title}
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.04 }}
@@ -53,6 +55,7 @@ const SelectedWorks = () => {
                 </p>
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
 
