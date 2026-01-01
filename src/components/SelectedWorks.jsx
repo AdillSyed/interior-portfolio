@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const SelectedWorks = () => {
   return (
     <section id="works" className="bg-[#F6F4EF]">
-      <div className="max-w-7xl mx-auto px-6 py-32">
+      <div className="max-w-7xl mx-auto px-6 py-12 pb-12">
 
-        <div className="mb-24">
+        <div className="mb-12">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#1C1C1C]">
             Selected Works
           </h2>
@@ -42,7 +42,7 @@ const SelectedWorks = () => {
               </div>
 
               <div className="w-full md:w-1/2">
-                <h3 className="font-serif text-2xl sm:text-3xl text-[#1C1C1C]">
+                <h3 className="mt-6 font-serif text-2xl sm:text-[28px] text-[#1C1C1C]">
                   {project.title}
                 </h3>
 
