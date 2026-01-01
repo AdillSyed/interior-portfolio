@@ -9,13 +9,22 @@ const ProjectDetail = () => {
   let { id } = useParams();
   id = parseInt(id);
   const handleSwipeEnd = (_, info) => {
-    const swipeThreshold = 100;
+    const distanceThreshold = 120;
+    const velocityThreshold = 500;
 
-    if (info.offset.x < -swipeThreshold && nextProject) {
+    if (
+      (info.offset.x < -distanceThreshold ||
+        info.velocity.x < -velocityThreshold) &&
+      nextProject
+    ) {
       navigate(`/projects/${nextProject.id}`);
     }
 
-    if (info.offset.x > swipeThreshold && prevProject) {
+    if (
+      (info.offset.x > distanceThreshold ||
+        info.velocity.x > velocityThreshold) &&
+      prevProject
+    ) {
       navigate(`/projects/${prevProject.id}`);
     }
   };
