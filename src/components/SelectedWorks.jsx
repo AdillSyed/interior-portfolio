@@ -1,4 +1,5 @@
 import { projects } from "../data/projects";
+import { motion } from "framer-motion";
 
 const SelectedWorks = () => {
   return (
@@ -17,7 +18,11 @@ const SelectedWorks = () => {
 
         <div className="space-y-32">
           {projects.map((project, index) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               key={project.id}
               className={`flex flex-col ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
@@ -25,10 +30,12 @@ const SelectedWorks = () => {
             >
 
               <div className="w-full md:w-1/2 h-[60vh] overflow-hidden">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 />
               </div>
 
@@ -45,7 +52,7 @@ const SelectedWorks = () => {
                   {project.style}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
