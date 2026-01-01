@@ -138,10 +138,11 @@ const ProjectDetail = () => {
               <motion.div
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
+                dragElastic={0.15}
                 onDragEnd={handleSwipeEnd}
                 key={index}
-                className="w-full h-[75vh] overflow-hidden rounded-2xl"
+                className="w-full h-[75vh] overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing"
+                style={{ touchAction: "pan-y" }}
               >
                 <img
                   src={img}
