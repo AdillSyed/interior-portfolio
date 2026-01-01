@@ -14,7 +14,6 @@ const ProjectDetail = () => {
     <section className="bg-[#F6F4EF]">
       <div className="max-w-5xl mx-auto px-6 py-32">
 
-        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,7 +32,6 @@ const ProjectDetail = () => {
           </p>
         </motion.div>
 
-        {/* Images */}
         <div className="mt-24 space-y-24">
           {project.images.map((img, index) => (
             <motion.div

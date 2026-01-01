@@ -6,3 +6,6 @@ body {
   @apply font-sans text-[#1C1C1C];
 }
 
+html {
+  scroll-behavior: smooth;
+}

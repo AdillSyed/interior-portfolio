@@ -10,7 +10,7 @@ const styles = [
 const StyleSpectrum = () => {
   return (
     <section className="bg-[#F6F4EF]">
-      <div className="max-w-7xl mx-auto px-6 py-40">
+      <div className="max-w-7xl mx-auto px-6 py-32">
 
         <div className="mb-24">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#1C1C1C]">
