@@ -28,7 +28,7 @@ export const projects = [
     type: "Residential",
     style: "Warm · Earthy",
     description:
-      "A functional residence shaped to balance efficiency with visual clarity.",
+      "A calm residential interior shaped by natural materials, soft light, and everyday comfort.",
     images: [familyHome],
   },
   {
@@ -37,7 +37,7 @@ export const projects = [
     type: "Commercial",
     style: "Soft · Scandinavian",
     description:
-      "A functional cafe shaped to balance efficiency with visual clarity.",
+      "A light, minimal café interior inspired by Scandinavian simplicity and functional design.",
     images: [nordicCafe],
   },
 ];

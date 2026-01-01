@@ -76,7 +76,7 @@ const ProjectDetail = () => {
               href="/#works"
               className="inline-block mb-12 text-xs uppercase tracking-widest text-[#6B6B6B]"
             >
-              ← Back to Work
+              ← Back to Works
             </a>
 
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">
@@ -136,13 +136,28 @@ const ProjectDetail = () => {
           <div className="max-w-5xl mx-auto px-6 py-32 space-y-24">
             {project.images.slice(1).map((img, index) => (
               <motion.div
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.15}
-                onDragEnd={handleSwipeEnd}
-                key={index}
-                className="w-full h-[75vh] overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing"
+                className="w-full h-[56svh] overflow-hidden rounded-2xl"
                 style={{ touchAction: "pan-y" }}
+                onPanEnd={(_, info) => {
+                  const distanceThreshold = 120;
+                  const velocityThreshold = 500;
+
+                  if (
+                    (info.offset.x < -distanceThreshold ||
+                      info.velocity.x < -velocityThreshold) &&
+                    nextProject
+                  ) {
+                    navigate(`/projects/${nextProject.id}`);
+                  }
+
+                  if (
+                    (info.offset.x > distanceThreshold ||
+                      info.velocity.x > velocityThreshold) &&
+                    prevProject
+                  ) {
+                    navigate(`/projects/${prevProject.id}`);
+                  }
+                }}
               >
                 <img
                   src={img}
