@@ -8,6 +8,17 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   let { id } = useParams();
   id = parseInt(id);
+  const handleSwipeEnd = (_, info) => {
+    const swipeThreshold = 100;
+
+    if (info.offset.x < -swipeThreshold && nextProject) {
+      navigate(`/projects/${nextProject.id}`);
+    }
+
+    if (info.offset.x > swipeThreshold && prevProject) {
+      navigate(`/projects/${prevProject.id}`);
+    }
+  };
 
   const currentIndex = projects.findIndex((p) => p.id === id);
   const prevProject = projects[currentIndex - 1];
@@ -42,7 +53,6 @@ const ProjectDetail = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextProject, prevProject, lightboxIndex, navigate]);
-
 
   const project = projects.find((p) => p.id === id);
 
@@ -81,31 +91,34 @@ const ProjectDetail = () => {
               onClick={() => openLightbox(0)}
             />
           </div>
-          <div className="mt-8 flex justify-between px-6
+          <div
+            className="hidden md:flex
+    justify-between px-8
     text-sm uppercase tracking-widest text-[#1C1C1C]
-    md:absolute md:bottom-8 md:left-0 md:right-0 md:px-8">
-          {prevProject ? (
-            <a
-              href={`/projects/${prevProject.id}`}
-              className="hover:opacity-70"
-            >
-              ← Previous
-            </a>
-          ) : (
-            <span />
-          )}
+    absolute bottom-8 left-0 right-0"
+          >
+            {prevProject ? (
+              <a
+                href={`/projects/${prevProject.id}`}
+                className="hover:opacity-70"
+              >
+                ← Previous
+              </a>
+            ) : (
+              <span />
+            )}
 
-          {nextProject ? (
-            <a
-              href={`/projects/${nextProject.id}`}
-              className="hover:opacity-70"
-            >
-              Next →
-            </a>
-          ) : (
-            <span />
-          )}
-        </div>
+            {nextProject ? (
+              <a
+                href={`/projects/${nextProject.id}`}
+                className="hover:opacity-70"
+              >
+                Next →
+              </a>
+            ) : (
+              <span />
+            )}
+          </div>
         </div>
       </section>
 
@@ -113,7 +126,11 @@ const ProjectDetail = () => {
         <section className="bg-[#F6F4EF]">
           <div className="max-w-5xl mx-auto px-6 py-32 space-y-24">
             {project.images.slice(1).map((img, index) => (
-              <div
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleSwipeEnd}
                 key={index}
                 className="w-full h-[75vh] overflow-hidden rounded-2xl"
               >
@@ -123,7 +140,7 @@ const ProjectDetail = () => {
                   className="w-full h-full object-cover cursor-zoom-in"
                   onClick={() => openLightbox(index + 1)}
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
